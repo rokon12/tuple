@@ -10,7 +10,7 @@ import java.util.function.IntFunction;
  */
 public interface Tuple<T extends Tuple> extends IntFunction, Cloneable, Serializable, Comparable<T> {
 
-    public static Tuple0 valueOf() {
+    public static <T0> Tuple0 valueOf() {
 
         return Tuple0.valueOf();
     }
@@ -29,6 +29,22 @@ public interface Tuple<T extends Tuple> extends IntFunction, Cloneable, Serializ
 
     public static <T0, T1, T2, T3, T4> Tuple5<T0, T1, T2, T3, T4> valueOf(T0 _0, T1 _1, T2 _2, T3 _3, T4 _4) {
         return Tuple5.valueOf(_0, _1, _2, _3, _4);
+    }
+
+    public static <T0, T1, T2, T3, T4, T5> Tuple6<T0, T1, T2, T3, T4, T5> valueOf(T0 _0, T1 _1, T2 _2, T3 _3, T4 _4, T5 _5) {
+        return Tuple6.valueOf(_0, _1, _2, _3, _4, _5);
+    }
+
+    public static <T0, T1, T2, T3, T4, T5, T6> Tuple7<T0, T1, T2, T3, T4, T5, T6> valueOf(T0 _0, T1 _1, T2 _2, T3 _3, T4 _4, T5 _5, T6 _6) {
+        return Tuple7.valueOf(_0, _1, _2, _3, _4, _5, _6);
+    }
+
+    public static <T0, T1, T2, T3, T4, T5, T6, T7> Tuple8<T0, T1, T2, T3, T4, T5, T6, T7> valueOf(T0 _0, T1 _1, T2 _2, T3 _3, T4 _4, T5 _5, T6 _6, T7 _7) {
+        return Tuple8.valueOf(_0, _1, _2, _3, _4, _5, _6, _7);
+    }
+
+    public static <T0, T1, T2, T3, T4, T5, T6, T7, T8> Tuple9<T0, T1, T2, T3, T4, T5, T6, T7, T8> valueOf(T0 _0, T1 _1, T2 _2, T3 _3, T4 _4, T5 _5, T6 _6, T7 _7, T8 _8) {
+        return Tuple9.valueOf(_0, _1, _2, _3, _4, _5, _6, _7, _8);
     }
 
     int size();
