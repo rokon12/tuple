@@ -1,6 +1,7 @@
 package com.bazlur.either;
 
 import java.util.NoSuchElementException;
+import java.util.Optional;
 import java.util.function.Function;
 import java.util.function.Supplier;
 
@@ -12,14 +13,11 @@ public abstract class Either<L, R> {
     protected L leftValue;
     protected R rightValue;
 
-    public static <L, R> Either<L, R> either(Supplier<L> leftSupplier, Supplier<R> rightRSupplier) {
-        R rightValue = rightRSupplier.get();
+    public static <L, R> Either<L, R> either(Supplier<L> leftSupplier, Supplier<R> rightSupplier) {
 
-        if (rightValue != null) {
-            return Either.<L, R>right(rightValue);
-        } else {
-            return Either.<L, R>left(leftSupplier.get());
-        }
+       return Optional.ofNullable(rightSupplier.get())
+                .map(Either::<L, R>right)
+                .orElseGet(() -> Either.<L, R>left(leftSupplier.get()));
     }
 
     public abstract L getLeft();
@@ -89,6 +87,7 @@ public abstract class Either<L, R> {
         public boolean equals(Object obj) {
             if (obj instanceof Right<?, ?>) {
                 final Right<?, ?> objAsLeft = (Right<?, ?>) obj;
+
                 return this.rightValue.equals(objAsLeft.rightValue);
             } else {
                 return false;
@@ -97,6 +96,7 @@ public abstract class Either<L, R> {
     }
 
     public static class Left<L, R> extends Either<L, R> {
+
         public Left(L left) {
             this.rightValue = null;
             this.leftValue = left;
